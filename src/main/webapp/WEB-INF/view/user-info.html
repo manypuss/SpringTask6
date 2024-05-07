@@ -6,10 +6,11 @@
 </head>
 <body>
 <h2>
-    New User
+    User Info
 </h2>
 <br>
 <form th:method="POST" th:action="@{/users}" th:object="${user}">
+    <input type="hidden" name="id" th:value="${user.getId()}"/>
     <label for="name">Enter name: </label>
     <input type="text" th:field="*{name}" id="name">
     <br/><br/>
@@ -22,9 +23,7 @@
     <label for="salary">Enter salary: </label>
     <input type="text" th:field="*{salary}" id="salary">
     <br/><br/>
-    <input type="submit" value="Add!"/>
-
+    <input type="submit" value="OK"/>
 </form>
-
 </body>
 </html>

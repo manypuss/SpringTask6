@@ -11,6 +11,7 @@ import java.util.List;
 public class UserDAOImpl implements UserDAO {
     @PersistenceContext
     private EntityManager entityManager;
+
     @Override
     public List<User> getAllUsers() {
         return entityManager.createQuery("select u from User u ", User.class).getResultList();
@@ -18,11 +19,17 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void saveUser(User user) {
-        entityManager.persist(user);
+        entityManager.merge(user);
     }
 
     @Override
     public User showUserById(int id) {
         return entityManager.find(User.class, id);
+    }
+
+    @Override
+    public void deleteUserById(int id) {
+        User user = entityManager.find(User.class, id);
+        entityManager.remove(user);
     }
 }

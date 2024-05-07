@@ -48,8 +48,6 @@ public class HibernateConfig {
         em.setPackagesToScan(env.getRequiredProperty("db.entity.package"));
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         em.setJpaProperties(getHibernateProperties());
-
-
         return em;
     }
 

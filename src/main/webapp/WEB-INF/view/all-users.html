@@ -9,7 +9,6 @@
     All Users
 </h2>
 <br>
-
 <table cellspacing="3" bgcolor="#000000">
     <thead>
     <tr bgcolor="#ffffff">
@@ -27,20 +26,29 @@
         <td th:text="${user.getDepartment()}"></td>
         <td th:text="${user.getSalary()}"></td>
         <td>
-            <form th:method="GET" th:action="@{users/{id}/edit(id=${user.getId()})}">
-                <input type="submit" value="Edit"/>
-            </form>
+            <table>
+                <tr>
+                    <td>
+                        <form th:method="GET" th:action="@{users/edit}" th:object="${user}">
+                            <input type="submit" value="Edit"/>
+                            <input type="hidden" name="id" th:value="${user.getId()}"/>
+                        </form>
+                    </td>
+                    <td>
+                        <form th:method="POST" th:action="@{users/delete}" th:object="${user}">
+                            <input type="submit" value="Delete"/>
+                            <input type="hidden" name="id" th:value="${user.getId()}"/>
+                        </form>
+                    </td>
+                </tr>
+            </table>
         </td>
     </tr>
     </tbody>
 </table>
-
 <br>
 <form th:method="GET" th:action="@{users/addNewUser}">
-    <input type="submit" value="Add!"/>
-
+    <input type="submit" value="Add"/>
 </form>
-
 </body>
-
 </html>

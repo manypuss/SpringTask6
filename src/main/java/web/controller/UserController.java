@@ -24,7 +24,6 @@ public class UserController {
     public String showAllUsers(Model model) {
         List<User> allUsers = userService.getAllUsers();
         model.addAttribute("allUsers", allUsers);
-
         return "all-users";
     }
 
@@ -39,11 +38,15 @@ public class UserController {
         return "redirect:/users";
     }
 
-
-
-    @GetMapping("/id/edit")
+    @GetMapping("/edit")
     public String edit(@RequestParam("id") int id, Model model) {
         model.addAttribute("user", userService.showUserById(id));
         return "user-info";
+    }
+
+    @PostMapping("/delete")
+    public String delete(@RequestParam("id") int id) {
+        userService.deleteUserById(id);
+        return "redirect:/users";
     }
 }
